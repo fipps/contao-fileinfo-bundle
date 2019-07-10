@@ -145,7 +145,7 @@
  *
  * Use function array_insert() to modify an existing hooks array.
  */
-$GLOBALS['TL_HOOKS']['postUpload'][] = array(\Fipps\FileinfoBundle\Listener\HooksListener::class, setFileInfoAfterUpload);
+$GLOBALS['TL_HOOKS']['postUpload'][] = array(\Fipps\FileinfoBundle\Listener\HooksListener::class, 'setFileInfoAfterUpload');
 
 
 /**
