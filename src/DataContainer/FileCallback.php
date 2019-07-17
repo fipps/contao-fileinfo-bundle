@@ -22,7 +22,7 @@ class FileCallback
      * @param \DataContainer $dc
      * @return string
      */
-    public function saveMetaCallback(string $val, \DataContainer $dc)
+    public function saveMetaCallback($val, \DataContainer $dc)
     {
         if ($dc instanceof DC_Folder) {
             $activeRecord = $dc->activeRecord;
