@@ -6,6 +6,8 @@
  *  @license  : LGPL 3.0+
  */
 
+
+$GLOBALS['TL_DCA']['tl_files']['fields']['meta']['load_callback'][] = array(\Fipps\FileinfoBundle\DataContainer\FileCallback::class, 'loadMetaCallback');
 $GLOBALS['TL_DCA']['tl_files']['fields']['meta']['save_callback'][] = array(\Fipps\FileinfoBundle\DataContainer\FileCallback::class, 'saveMetaCallback');
 
 if (is_array($GLOBALS['TL_DCA']['tl_files']['fields']['copyright'])) {

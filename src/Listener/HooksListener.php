@@ -10,7 +10,7 @@
 namespace Fipps\FileinfoBundle\Listener;
 
 
-use Contao\FilesModel;
+use FilesModel;
 
 class HooksListener
 {
