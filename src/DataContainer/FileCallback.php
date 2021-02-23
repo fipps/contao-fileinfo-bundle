@@ -14,9 +14,32 @@ use DC_Folder;
 use FilesModel;
 use DataContainer;
 use StringUtil;
+use Contao\CoreBundle\DataContainer\PaletteManipulator;
+use Contao\System;
 
 class FileCallback
 {
+
+    public function addMetaToFolder(DataContainer $dc)
+    {
+        if (!$dc->id) {
+            return;
+        }
+
+        $projectDir  = System::getContainer()->getParameter('kernel.project_dir');
+        $blnIsFolder = is_dir($projectDir.'/'.$dc->id);
+
+        // Add the meta data when editing folders
+
+
+        if ($blnIsFolder && version_compare(VERSION, '4.9', '>=')) {
+            PaletteManipulator::create()
+                ->addField('meta', 'copyright')
+                ->applyToPalette('default', $dc->table);
+        }
+        $GLOBALS['TL_DCA']['tl_files']['fields']['meta']['eval']['tl_class'] = 'clr';
+
+    }
 
     /**
      * Bugfix
@@ -27,7 +50,7 @@ class FileCallback
      */
     public function loadMetaCallback($val, DataContainer $dc)
     {
-        if (is_array(unserialize($val))) {
+        if (is_array(StringUtil::deserialize($val))) {
             return $val;
         }
 
